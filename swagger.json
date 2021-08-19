@@ -1,0 +1,366 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Swagger Product API",
+        "description": "This is a sample Product server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+        "version": "1.0.0",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "Swagger Contact",
+            "email": "apiteam@swagger.io",
+            "url": "http://swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:{port}/{basePath}",
+            "description": "Local Server",
+            "variables": {
+                "port": {
+                    "enum": [
+                        "3000",
+                        "3004"
+                    ],
+                    "default": "3000",
+                    "description": "Port Number"
+                },
+                "basePath": {
+                    "enum": [
+                        "api",
+                        "api/v1"
+                    ],
+                    "default": "api",
+                    "description": "Base Path & Version"
+                }
+            }
+        },
+        {
+            "url": "https://domain.com/api/{basePath}",
+            "description": "Live Server",
+            "variables": {
+                "basePath": {
+                    "enum": [
+                        "api",
+                        "api/v1"
+                    ],
+                    "default": "api",
+                    "description": "Base Path & Version"
+                }
+            }
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "Authorization": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "value": "Bearer 12345678"
+            }
+        },
+        "parameters": {
+            "acceptLanguage": {
+                "name": "accept-language",
+                "in": "header",
+                "description": "User's language, default will be 'en'",
+                "required": false,
+                "style": "simple",
+                "explode": true,
+                "schema": {
+                    "type": "string",
+                    "enum": [
+                        "en"
+                    ],
+                    "default": "en"
+                }
+            },
+            "searchKeyword": {
+                "name": "searchKeyword",
+                "type": "string",
+                "description": "Searched keywords",
+                "default": "",
+                "example": "",
+                "required": false
+            },
+            "perPage": {
+                "name": "perPage",
+                "type": "integer",
+                "description": "Number or records per page",
+                "default": 10,
+                "example": 10,
+                "required": false
+            },
+            "page": {
+                "name": "page",
+                "type": "integer",
+                "description": "Page number",
+                "default": 1,
+                "example": 1,
+                "required": false
+            },
+            "order": {
+                "type": "string",
+                "enum": [
+                    "desc",
+                    "asc"
+                ],
+                "default": "desc",
+                "example": "desc",
+                "required": false
+            },
+            "activeStatus": {
+                "description": "* 0 - Inactive \n* 1 - Active \n* 2 - Soft Delete",
+                "type": "number",
+                "enum": [0, 1, 2],
+                "example": 1
+            },
+            "multiActiveStatus": {
+                "description": "* 0 - Inactive \n* 1 - Active \n* 2 - Soft Delete",
+                "type": "number",
+                "enum": [0, 1, 2],
+                "example": [1]
+            }
+        },
+        "schemas": {
+            "SortOrder": {
+                "type": "object",
+                "properties": {
+                    "order": {
+                        "type": "string",
+                        "enum": [
+                            "desc",
+                            "asc"
+                        ],
+                        "default": "desc",
+                        "example": "desc"
+                    }
+                }
+            },
+            "SortBy": {
+                "type": "object",
+                "properties": {
+                    "sortByFieldName_1": {
+                        "type": "string",
+                        "enum": [
+                            "desc",
+                            "asc"
+                        ],
+                        "default": "desc",
+                        "example": "desc"
+                    },
+                    "sortByFieldName_2": {
+                        "type": "string",
+                        "enum": [
+                            "desc",
+                            "asc"
+                        ],
+                        "default": "desc",
+                        "example": "asc"
+                    }
+                }
+            },
+            "200": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "status_code": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 200
+                    },
+                    "status_key": {
+                        "type": "string",
+                        "example": "OK"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Success!"
+                    },
+                    "message_key": {
+                        "type": "string",
+                        "example": "ok"
+                    },
+                    "setting": {
+                        "type": "array",
+                        "example": {}
+                    },
+                    "data_count": {
+                        "type": "integer",
+                        "example": 0
+                    },
+                    "data": {
+                        "type": "array",
+                        "example": []
+                    }
+                }
+            },
+            "400": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "status_code": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 400
+                    },
+                    "status_key": {
+                        "type": "string",
+                        "example": "Bad Request"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Bad Request!"
+                    },
+                    "message_key": {
+                        "type": "string",
+                        "example": "something_wrong"
+                    },
+                    "setting": {
+                        "type": "array",
+                        "example": {}
+                    },
+                    "data_count": {
+                        "type": "integer",
+                        "example": 0
+                    },
+                    "data": {
+                        "type": "array",
+                        "example": []
+                    }
+                }
+            },
+            "401": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "status_code": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 400
+                    },
+                    "status_key": {
+                        "type": "string",
+                        "example": "Authorization"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Access denied. No token provided."
+                    },
+                    "message_key": {
+                        "type": "string",
+                        "example": "no_auth"
+                    },
+                    "setting": {
+                        "type": "array",
+                        "example": {}
+                    },
+                    "data_count": {
+                        "type": "integer",
+                        "example": 0
+                    },
+                    "data": {
+                        "type": "array",
+                        "example": []
+                    }
+                }
+            },
+            "404": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "status_code": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 404
+                    },
+                    "status_key": {
+                        "type": "string",
+                        "example": "Not Found"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Requested service is not found!"
+                    },
+                    "message_key": {
+                        "type": "string",
+                        "example": "url_not_found"
+                    },
+                    "setting": {
+                        "type": "array",
+                        "example": {}
+                    },
+                    "data_count": {
+                        "type": "integer",
+                        "example": 0
+                    },
+                    "data": {
+                        "type": "array",
+                        "example": []
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "OK",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/200"
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Bad Request",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/400"
+                        }
+                    }
+                }
+            },
+            "401": {
+                "description": "Authorization",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/401"
+                        }
+                    }
+                }
+            },
+            "404": {
+                "description": "Not Found",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/404"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

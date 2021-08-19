@@ -1,0 +1,44 @@
+{
+  "name": "microservice-nodejs",
+  "version": "1.0.0",
+  "description": "REST API DEMO",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": ">=11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/turivishal/microservice-nodejs.git"
+  },
+  "keywords": [
+    "product"
+  ],
+  "author": "Vishal Turi",
+  "license": "ISC",
+  "homepage": "https://github.com/turivishal/microservice-nodejs/blob/main/README.md",
+  "dependencies": {
+    "accept-language-parser": "^1.5.0",
+    "app-root-path": "^3.0.0",
+    "async": "^3.2.0",
+    "bcryptjs": "^2.4.3",
+    "config": "^1.31.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.6.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "fs": "0.0.1-security",
+    "joi": "^17.4.0",
+    "joi-objectid": "^3.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.11.13",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4",
+    "winston": "^2.4.0",
+    "yaml": "^1.10.0"
+  }
+}

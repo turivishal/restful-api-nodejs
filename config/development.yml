@@ -1,0 +1,67 @@
+mode: "development"
+host: ""
+server:
+  port: 3000
+header:
+  auth_token_key: "Authorization"
+mongodb:
+  host: "localhost"
+  post: 27017
+  db_name: "ProductLocal"
+  uris: "mongodb://localhost:27017/ProductLocal"
+  options:
+    useUnifiedTopology: true
+    useNewUrlParser: true
+    useCreateIndex: true
+  collection_prefix: "product"
+log:
+  enable: true
+  exception:
+    enable: true
+    dir: "logs"
+    filename: "uncaughtExceptions.log"
+    console_options:
+      colorize: true
+      prettyPrint: true
+  rejection:
+    enable: true
+  logging:
+    enable: true
+    dir: "logs"
+    filename: "logfile.log"
+  db:
+    enable: false
+    collection: "product_log"
+    level: "info"
+    options:
+      useUnifiedTopology: true
+routes:
+  request:
+    raw:
+      enable: true
+    form_urlencoded:
+      enable: true
+      urlencoded_options:
+        limit: "100mb"
+        extended: true
+      options:
+        limit: "100mb"
+  corsRoot: 
+    check: false
+    origin: "domain.com"
+  cors:
+      origin: "*"
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
+      preflightContinue: false
+      optionsSuccessStatus: 204
+gateway_auth: 
+  secret: "oauthSecretKey"
+  auth_token_key: "Authorization"
+jwt:
+  secret: "development#product"
+  exp: "50m"
+languages:
+  default: "en"
+  all: ["en"]
+  header: 
+    key: "accept-language"

@@ -1,0 +1,24 @@
+auth:
+  invalid_login_auth: 'Invalid username or password!'
+  login_success_auth: 'Login successfully!'
+  inactive_login_auth: 'Your account is inactive Please contact our support team!'
+  no_auth: 'Access denied. No token provided.'
+  invalid_token_auth: 'Invalid token.'
+general:
+  something_wrong: 'Something went wrong please try again!'
+  validation_failed: 'Validation failed!'
+  no_message: 'No message.'
+  invalid_id: 'Invalid ID.'
+  url_not_found: 'Requested service is not found!'
+product:
+  created: 'Created a Product.'
+  read_a: 'Get a Product.'
+  updated: 'Updated a Product.'
+  deleted: 'Deleted a Product.'
+  read_all: 'Get all Products.'
+  already_added: 'Product already exists.'
+  not_found: 'Product not found.'
+  no_data_search: 'Product search not found.'
+  already_deleted: 'Product is deleted.'
+  activated: "Activated a Product."
+  deactivated: "Deactivated a Product."
