@@ -21,8 +21,8 @@ Customized structure for RESTful API in NodeJS.
 ```cmd
 git clone https://github.com/turivishal/restful-api-nodejs.git
 ```
-2) Move to clone project directory
-3) Install dependancies
+2) Navigate to clone project directory
+3) Install dependencies
 ```cmd
 npm install
 ```
@@ -30,13 +30,13 @@ npm install
     
     i) Port (optional)
     
-    - The default port is **3000**, you can change if you want to, nevigate to project directory > `app/config/development.yml`, in this file there is a property called `server` > `port`.
+    - The default port is **3000**, you can change if you want to, navigate to project directory > `app/config/development.yml`, in this file there is a property called `server` > `port`.
     
     ii) Database connection (optional)
     
-    - The default connection link is **"mongodb://localhost:27017/ProductLocal"**, you can change it as per your choice, nevigate to project directory > `app/config/development.yml`, in this file there is a property called `mongodb` > `uris`.
+    - The default connection link is **"mongodb://localhost:27017/ProductLocal"**, you can change it as per your choice, navigate to project directory > `app/config/development.yml`, in this file there is a property called `mongodb` > `uris`.
 
-5) Create a `.env` file in root directory of project, and declare 2 variables for environment config file selection
+5) Create a `.env` file in the root directory of the project, and declare 2 variables for environment config file selection
 ```
 PROFILE=development
 NODE_ENV=development
