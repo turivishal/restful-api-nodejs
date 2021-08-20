@@ -1,7 +1,7 @@
 {
-  "name": "microservice-nodejs",
+  "name": "restful-api-nodejs",
   "version": "1.0.0",
-  "description": "REST API DEMO",
+  "description": "RESTful API Structure",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,7 +15,12 @@
     "url": "https://github.com/turivishal/microservice-nodejs.git"
   },
   "keywords": [
-    "product"
+    "product",
+    "nodejs",
+    "restful",
+    "api",
+    "nodejs-api",
+    "express"
   ],
   "author": "Vishal Turi",
   "license": "ISC",
