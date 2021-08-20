@@ -26,7 +26,17 @@ git clone https://github.com/turivishal/restful-api-nodejs.git
 ```cmd
 npm install
 ```
-4) Run project
+4) Configure
+    
+    i) Port (optional)
+    
+    - The default port is **3000**, you can change if you want to, nevigate to project directory > `app/config/development.yml`, in this file there is a property called `server` > `port`.
+    
+    ii) Database connection (optional)
+    
+    - The default connection link is **"mongodb://localhost:27017/ProductLocal"**, you can change it as per your choice, nevigate to project directory > `app/config/development.yml`, in this file there is a property called `mongodb` > `uris`.
+    
+6) Run project
 ```cmd
 npm start
 ```
