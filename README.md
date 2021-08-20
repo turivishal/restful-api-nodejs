@@ -35,12 +35,17 @@ npm install
     ii) Database connection (optional)
     
     - The default connection link is **"mongodb://localhost:27017/ProductLocal"**, you can change it as per your choice, nevigate to project directory > `app/config/development.yml`, in this file there is a property called `mongodb` > `uris`.
-    
+
+5) Create a `.env` file in root directory of project, and declare 2 variables for environment config file selection
+```
+PROFILE=development
+NODE_ENV=development
+```
 6) Run project
 ```cmd
 npm start
 ```
-5) You will see the console message
+7) You will see the console message
 ```
 > restful-api-nodejs@1.0.0 start
 > node app.js
@@ -48,7 +53,7 @@ npm start
 info: We are working on DEVELOPMENT environment and Listening on port 3000...
 info: MongoDB connection succeeded!
 ```
-6) Open the link http://localhost:3000/api-docs in browser and it will open the swagger
+8) Open the link http://localhost:3000/api-docs in browser and it will open the swagger
 
 ![image](https://user-images.githubusercontent.com/10988772/130230131-54ffe879-0820-42f5-bde8-983ac697bfe2.png)
 
