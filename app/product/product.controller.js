@@ -11,8 +11,8 @@ const ProductService = require("./product.service");
  *     operationId: productCreate
  *     tags:
  *       - Product
- *     consumes:
- *       - multipart/form-data
+ *     produces:
+ *       - application/json
  *     parameters:
  *       - $ref: '#/components/parameters/acceptLanguage'
  *     requestBody:
@@ -126,6 +126,8 @@ module.exports.search = async (req, res, next) => {
  *     operationId: productEdit
  *     tags:
  *       - Product
+ *     produces:
+ *       - application/json
  *     parameters:
  *       - $ref: '#/components/parameters/acceptLanguage'
  *       - name: productId

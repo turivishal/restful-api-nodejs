@@ -42,15 +42,15 @@ class MongoRepository {
 
     // FIND SINGLE RECORD
     async findOne(Schema, filter) {
-        return await Schema
+        return Schema
             .findOne(filter.query, filter.projection || {})
             .populate(filter.populate || []);
     }
 
     // CHECK WHETHER RECORD IS UNIQ OR NOT
     // IF UNIQUE THEN RETURN TRUE ELSE FALSE
-    async isUnique(query = {}, projection = {}, returnObject = false) {
-        let isUnique = await this.findOne({ query, projection });
+    async isUnique(Schema, query = {}, projection = {}, returnObject = false) {
+        let isUnique = await this.findOne(Schema, { query, projection });
         if (isUnique) {
             if (returnObject) return isUnique;
             return false;
@@ -61,8 +61,8 @@ class MongoRepository {
 
     // CHECK WHETHER RECORD IS EXISTS OR NOT
     // IF EXISTS THEN RETURN TRUE ELSE FALSE
-    async isExists(query = {}, projection = {}, returnObject = false) {
-        let isExists = await this.findOne({ query, projection });
+    async isExists(Schema, query = {}, projection = {}, returnObject = false) {
+        let isExists = await this.findOne(Schema, { query, projection });
         if (isExists) {
             if (returnObject) return isExists;
             return true;
@@ -79,7 +79,7 @@ class MongoRepository {
 
     // DOCUMENT COUNT
     async countDocuments(Schema, query, projection) {
-        return await Schema.find(query, projection).countDocuments();
+        return await Schema.countDocuments(query);
     }
 
     // DOCUMENT COUNT
@@ -94,8 +94,7 @@ class MongoRepository {
 
     // FIND FILTER DATA
     async findFilter(Schema, filter) {
-        return await Schema
-            .find(filter.query || {}, filter.projection || {})
+        return await Schema.find(filter.query || {}, filter.projection || {})
             .populate(filter.populate || [])
             .sort(filter.sort || {})
             .skip(filter.skip)
@@ -104,17 +103,17 @@ class MongoRepository {
 
     // FIND AND UPDATE
     async findByIdAndUpdate(Schema, filter, update, projection = {}) {
-        return await Schema.findByIdAndUpdate(filter, update, projection);
+        return Schema.findByIdAndUpdate(filter, update, projection);
     }
 
-    // FIND AND UPDATE
-    async findOneAndUpdate(Schema, filter, update, projection = {}) {
-        return await Schema.findOneAndUpdate(filter, update, projection);
+    // FIND ONE AND UPDATE
+    async findOneAndUpdate(Schema, filter, update, options = {}) {
+        return Schema.findOneAndUpdate(filter, update, options);
     }
 
     // UPDATE ONE
     async updateOne(Schema, filter, update, projection = {}) {
-        return await Schema.updateOne(filter, update, projection);
+        return Schema.updateOne(filter, update, projection);
     }
 
     // DEFAULT SORTING
@@ -175,7 +174,7 @@ class MongoRepository {
                 query['$or'].push(
                     {
                         [value]: {
-                            $regex: new RegExp('.*' + searchKeyword + '.*'),
+                            $regex: '.*' + searchKeyword + '.*',
                             $options: 'i'
                         }
                     },

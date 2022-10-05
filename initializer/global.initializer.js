@@ -1,4 +1,4 @@
-module.exports = (app, config, winston) => {
+module.exports = () => {
 
     // SET RESPONSE HELPER
     global.Response = require("../util/response.helper");

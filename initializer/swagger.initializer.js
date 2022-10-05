@@ -3,7 +3,7 @@ const router = express.Router();
 const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
 
-module.exports = async (app, config, winston) => {
+module.exports = async (app) => {
 
     let jsDoc = swaggerJSDoc({
         swaggerDefinition: {

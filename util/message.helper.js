@@ -116,7 +116,7 @@ class MessageReader {
     // HOPI/JOI ERROR ARRAY DECODE
     joiErrorDecode = async (error) => {
         if (error) {
-            var result = {};
+            let result = {};
             for (let field in error.details) result[error.details[field].path[0]] = error.details[field].message;
             return result;
         }

@@ -1,5 +1,5 @@
 const config = require("config");
-// const jwt = require('jwt-simple');
+//@ const jwt = require('jwt-simple');
 const bcrypt = require("bcryptjs");
 const _ = require("lodash");
 
@@ -32,26 +32,13 @@ exports.parseStringToObject = (configPath, obj) => {
 
 // PASSWORD HASH GENERATE
 exports.passwordHashGen = async (password) => {
-
     const salt = await bcrypt.genSalt(10);
     return await bcrypt.hash(password, salt);
-
 }
 
 // COMBINE 2 OBJECTS, FIRST WILL BE PRIMARY, AND REMOVE EMPTY VALUE KEY
 exports.mergeWithEmpty = async (primaryObj, SecondaryObj) => {
-    
-    return await 
-        _.omitBy(
-            _.mergeWith(
-                {}, 
-                SecondaryObj, 
-                primaryObj, 
-                (o, s) => o ? o : s
-            ), 
-            _.isEmpty
-        );
-
+    return _.omitBy(_.mergeWith({}, SecondaryObj, primaryObj, (o, s) => o ? o : s), _.isEmpty);
 }
 
 // CONVERT MB TO BYTES

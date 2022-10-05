@@ -1,5 +1,4 @@
 const Joi = require("joi");
-Joi.objectId = require('joi-objectid')(Joi)
 const { MessageReader } = require("../../util/message.helper");
 const MongoRepository = require("../../util/mongo.repository.helper");
 

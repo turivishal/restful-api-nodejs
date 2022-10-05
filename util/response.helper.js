@@ -145,7 +145,7 @@ class Response {
 
     // SET RESPONSE
     sendResponse() {
-        this.sendJSONResponse()
+        this.sendJSONResponse();
     }
 
     // SET MESSAGE

@@ -50,8 +50,8 @@ npm start
 > restful-api-nodejs@1.0.0 start
 > node app.js
 
-info: We are working on DEVELOPMENT environment and Listening on port 3000...
-info: MongoDB connection succeeded!
+info: We are working on DEVELOPMENT environment and Listening on port 3000... {"timestamp":"2022-10-05 16:57:19:551"}
+info: MongoDB connection succeeded! {"timestamp":"2022-10-05 16:57:19:574"}
 ```
 8) Open the link http://localhost:3000/api-docs in browser and it will open the swagger
 

@@ -18,7 +18,7 @@ module.exports.create = async (data) => {
 
 // READ
 module.exports.read = async (id) => {
-    let responseData = await Product.Schema.findOne({ _id: Product.ObjectId(id) }, Product.SearchViewFields).lean();
+    let responseData = await Product.Schema.findById(id, Product.SearchViewFields).lean();
     // FIND ONE
     if (!responseData) return {
         'status': false,
@@ -81,7 +81,7 @@ async function searchFilterAggregate(data) {
 
 // UPDATE
 module.exports.update = async (id, data) => {
-    let responseData = await MongoRepository.findOneAndUpdate(Product.Schema, { _id: id }, { $set: data }, { returnOriginal: false, new: true, useFindAndModify: false });
+    let responseData = await MongoRepository.findOneAndUpdate(Product.Schema, { _id: id }, { $set: data }, { returnOriginal: false, new: true });
     if (!responseData) return {
         'statusCode': 404,
         'messageKey': `${msgpath}.not_found`,

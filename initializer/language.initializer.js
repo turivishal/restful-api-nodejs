@@ -1,5 +1,4 @@
-
-module.exports = async (app, config, winston) => {
+module.exports = async (app, config) => {
 
     app.use((req, res, next) => {
 

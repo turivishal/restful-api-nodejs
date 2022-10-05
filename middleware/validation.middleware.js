@@ -5,7 +5,7 @@ const _ = require('lodash');
 exports.request = (Model, module) => {
     return async (req, res, next) => {
         try {
-            const error = !Model.DtoValidations[module] ? 1 : await Joi.validate(_.omit(req.body, ['user']), Model.DtoValidations[module]);
+            const error = !Model.DtoValidations[module] ? 1 : await Joi.validate(req.body, Model.DtoValidations[module]);
             if (error) return Response.error(res, {
                 'statusCode': 400,
                 'messageKey': 'general.validation_failed',
@@ -23,7 +23,7 @@ exports.request = (Model, module) => {
 module.exports.validateObjectId = (ids = []) => {
     return async (req, res, next) => {
         try {
-            if (ids.some((id) => mongoose.Types.ObjectId.isValid(req.params[id]) != true)) return Response.error(res, {
+            if (ids.some((id) => !mongoose.isObjectIdOrHexString(req.params[id]))) return Response.error(res, {
                 'statusCode': 400,
                 'messageKey': 'general.invalid_id'
             });

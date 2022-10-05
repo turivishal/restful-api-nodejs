@@ -9,32 +9,25 @@ mongodb:
   post: 27017
   db_name: "ProductProd"
   uris: "mongodb://localhost:27017/ProductProd"
-  options:
-    useUnifiedTopology: true
-    useNewUrlParser: true
-    useCreateIndex: true
+  options: {}
   collection_prefix: "product"
 log:
   enable: true
+  level: "error"
   exception:
     enable: true
     dir: "logs"
     filename: "uncaughtExceptions.log"
-    console_options:
-      colorize: true
-      prettyPrint: true
+    path: "logs/uncaughtExceptions.log"
+    level: "error"
   rejection:
     enable: true
   logging:
     enable: true
     dir: "logs"
     filename: "logfile.log"
-  db:
-    enable: false
-    collection: "product_log"
+    path: "logs/logfile.log"
     level: "info"
-    options:
-      useUnifiedTopology: true
 routes:
   request:
     raw:
@@ -48,7 +41,7 @@ routes:
         limit: "100mb"
   corsRoot: 
     check: false
-    origin: "domain.com"
+    origin: ["domain.com"] ## update your domain name, multiple allowed
   cors:
       origin: "*"
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE"

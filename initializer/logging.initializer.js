@@ -1,51 +1,26 @@
-const fs = require('fs');
-// require('winston-mongodb');
 require('express-async-errors');
+const winston = require("winston");
 
-module.exports = (app, config, winston) => {
+module.exports = (app, config) => {
 
-    if (!config.get('log.enable')) return false;
-
-    // EXCEPTION
-    if (config.get('log.exception.enable')) {
-        const exception = config.get('log.exception');
-        !fs.existsSync(exception.dir) && fs.mkdirSync(exception.dir);
-        winston.handleExceptions(
-            new winston.transports.Console(exception.console_options),
-            new winston.transports.File({ filename: `${exception.dir}/${exception.filename}` })
-        );
-    }
+    //@ { error: 0, warn: 1, info: 2, http: 3, verbose: 4, debug: 5, silly: 6 }
+    const log = config.get('log');
+    winston.loggers.add('general', {
+        format: winston.format.combine(
+            winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:SSS' }),
+            winston.format.json()
+        ),
+        transports: [
+            new winston.transports.Console({ level: log.logging.level, format: winston.format.simple() }),
+            new winston.transports.File({ filename: log.logging.path, level: log.logging.level }),
+            new winston.transports.File({ filename: log.exception.path, level: log.exception.level })
+        ],
+        level: log.level,
+        silent: !config.get('log.enable'),
+        exitOnError: false
+    });
 
     // UNHANDLED REJECTION
-    if (config.get('log.rejection.enable'))
-        process.on('unhandledRejection', (ex) => {
-            throw ex;
-        });
-
-    // LOGGING
-    if (config.get('log.logging.enable')) {
-        const logging = config.get('log.logging');
-        !fs.existsSync(logging.dir) && fs.mkdirSync(logging.dir);
-        winston.add(winston.transports.File, { filename: `${logging.dir}/${logging.filename}` });
-    }
-
-    // MONGO LOG CONNECTION
-    if (config.get('log.db.enable')) {
-        const db = config.get('log.db');
-        winston.add(winston.transports.MongoDB, {
-            db: config.get('mongodb.uris'),
-            collection: db.collection,
-            level: db.level,
-            options: db.options
-        });
-    }
-
-    // process.on('uncaughtException', function(error) {
-    //     if(!error.isOperational) process.exit(1);
-    // });
-
-    // process.on('unhandledRejection', function(reason, p){
-    //     console.log(reason, p);
-    // });
+    if (config.get('log.rejection.enable')) process.on('unhandledRejection', (ex) => { throw ex; });
 
 }
